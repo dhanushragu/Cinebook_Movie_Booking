@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CineBook - discover movies and book your seats.">
+  <title>CineBook | Movie Tickets</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="CineBook home"><span class="brand-mark">C</span> Cine<span>Book</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#movies">Movies</a><a href="#how-it-works">How it works</a>
+    </nav>
+    <button class="header-bookings" id="viewBookingsBtn" type="button">My Bookings <span id="bookingCount">0</span></button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow"><span class="live-dot"></span> YOUR NEXT MOVIE NIGHT STARTS HERE</p>
+        <h1>Big screen.<br><span>Big moments.</span></h1>
+        <p class="hero-copy">Find your favourite movie, pick your seats, and make it a night to remember.</p>
+        <a class="primary-btn" href="#movies">Explore movies <span>↗</span></a>
+        <div class="hero-stats"><div><strong>6</strong><small>Now showing</small></div><div><strong>₹150<span>+</span></strong><small>Starting price</small></div><div><strong>100%</strong><small>Movie magic</small></div></div>
+      </div>
+      <div class="hero-art" aria-label="Decorative cinema illustration">
+        <div class="art-glow"></div><div class="ticket-shape"><span class="ticket-star">✦</span><span class="ticket-label">ADMIT ONE</span><strong>YOUR<br>NEXT<br>STORY</strong><span class="ticket-line"></span><span class="ticket-small">CINEBOOK · CINEMA</span></div>
+        <div class="floating-chip chip-top">✦ MOVIE NIGHT</div><div class="floating-chip chip-bottom">● BOOK IN SECONDS</div>
+      </div>
+    </section>
+
+    <section class="movie-section" id="movies">
+      <div class="section-heading"><div><p class="eyebrow">PICK YOUR EXPERIENCE</p><h2>Now showing<span>.</span></h2></div><p class="section-note">A little bit of everything.<br>One perfect seat for you.</p></div>
+      <div class="filters">
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search movies..." aria-label="Search movies"></label>
+        <div class="filter-pills" id="genreFilters"><button class="filter-pill active" data-genre="All">All movies</button><button class="filter-pill" data-genre="Action">Action</button><button class="filter-pill" data-genre="Drama">Drama</button><button class="filter-pill" data-genre="Sci-Fi">Sci-Fi</button><button class="filter-pill" data-genre="Comedy">Comedy</button></div>
+      </div>
+      <div class="movie-grid" id="movieGrid" aria-live="polite"></div>
+      <p class="empty-state hidden" id="emptyState">No movies found. Try a different search.</p>
+    </section>
+
+    <section class="how-section" id="how-it-works"><div class="how-title"><p class="eyebrow">SIMPLE AS 1, 2, 3</p><h2>Your seat is<br><span>waiting.</span></h2></div><div class="steps"><article><span>01</span><h3>Choose a movie</h3><p>Explore the lineup and find the story you want to see.</p></article><article><span>02</span><h3>Pick your seats</h3><p>Choose your showtime and select available seats on the map.</p></article><article><span>03</span><h3>Enjoy the show</h3><p>Confirm your demo booking and keep the details handy.</p></article></div></section>
+  </main>
+
+  <footer><a class="brand" href="#"><span class="brand-mark">C</span> Cine<span>Book</span></a><p>Made for movie people. <span>© 2026 CineBook</span></p><a href="#movies">Back to movies ↑</a></footer>
+
+  <div class="modal-backdrop hidden" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="booking-modal">
+      <button class="close-modal" id="closeModalBtn" aria-label="Close booking window">×</button>
+      <div id="bookingStep">
+        <p class="eyebrow">YOUR MOVIE NIGHT</p><h2 id="modalTitle">Book your tickets<span>.</span></h2>
+        <div class="selected-movie" id="selectedMovieInfo"></div>
+        <div class="booking-fields"><label>Choose date<select id="showDate"></select></label><label>Showtime<select id="showTime"><option>10:30 AM</option><option>01:45 PM</option><option>06:30 PM</option><option>09:45 PM</option></select></label></div>
+        <div class="seat-legend"><span><i class="seat-demo available"></i> Available</span><span><i class="seat-demo selected"></i> Selected</span><span><i class="seat-demo occupied"></i> Occupied</span></div>
+        <div class="screen"><span>SCREEN THIS WAY</span></div>
+        <div class="seat-map" id="seatMap" aria-label="Choose seats"></div>
+        <div class="booking-summary"><div><small>Selected seats</small><strong id="selectedSeatsText">None</strong></div><div class="total-price"><small>Total amount</small><strong id="totalPrice">₹0</strong></div></div>
+        <button class="primary-btn full-width" id="confirmBookingBtn" disabled>Confirm booking <span>→</span></button>
+        <p class="demo-note">Demo only — no payment is collected.</p>
+      </div>
+      <div class="success-panel hidden" id="bookingSuccess"><div class="success-icon">✓</div><p class="eyebrow">BOOKING CONFIRMED</p><h2>It's showtime<span>!</span></h2><p id="successMessage"></p><div class="ticket-code" id="ticketCode"></div><button class="primary-btn full-width" id="doneBtn">Back to movies <span>↗</span></button></div>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toast" role="status"></div>
+  <div class="drawer-backdrop hidden" id="bookingsDrawerBackdrop">
+    <aside class="bookings-drawer" aria-label="My bookings">
+      <div class="drawer-heading"><div><p class="eyebrow">YOUR PLANS</p><h2>My bookings<span>.</span></h2></div><button class="close-modal" id="closeDrawerBtn" aria-label="Close bookings">×</button></div>
+      <div id="bookingsList"></div>
+    </aside>
+  </div>
+</body>
+</html>
